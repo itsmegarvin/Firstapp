@@ -5,8 +5,8 @@ function App()
 {
   return(
     <View>
-        <Text> hello world </Text>
-        <Text> my first one </Text>
+        <Text style={{fontSize:40}}> hello world </Text>
+        <Text style={{fontSize:40}}> my first one </Text>
     </View>
   )
 }
