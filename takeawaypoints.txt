@@ -1,0 +1,18 @@
+->two methods for react native
+1.  without using expo
+2.  using expo
+
+-> while using expo you can encounter problem of app.js/app.tsx not seen inside root.     if app.js is not visible then delete the project
+do not directly run that command 
+
+1) run this instead :
+npm install -g expo-cli
+2) after that run :
+expo init my-new-project
+3) then go to the directory:
+cd my-new-project
+4) and run the project
+
+->file structure
+->Text,View,Button and concept of SafeAreaView in StatusBar
+
