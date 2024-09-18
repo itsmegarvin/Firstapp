@@ -1,12 +1,15 @@
 import React from "react";
-import {Text,View,} from "react-native";
+import {Text,View,Button} from "react-native";
 
 function App()
 {
   return(
-    <View>
-        <Text style={{fontSize:40}}> hello world </Text>
-        <Text style={{fontSize:40}}> my first one </Text>
+    <View>  //why View? see takeawaypoint 4
+        <Text style={{fontSize:40}}> first text</Text>
+        <Button title='press me first '></Button>
+        <Text style={{fontSize:40}}> second text</Text> 
+        <Button title='press me second'></Button>
+        
     </View>
   )
 }
