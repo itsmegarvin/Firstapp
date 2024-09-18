@@ -1,27 +1,31 @@
-->two methods for react native
-1.  without using expo
-2.  using expo
+1>two methods for react native
+a.  without using expo
+b.  using expo
 
--> while using expo you can encounter problem of app.js/app.tsx not seen inside root.     if app.js is not visible then delete the project
+2> while using expo you can encounter problem of app.js/app.tsx not seen inside root.     if app.js is not visible then delete the project
 do not directly run that command 
 
-1) run this instead :
+a) run this instead :
 npm install -g expo-cli
-2) after that run :
+b) after that run :
 expo init my-new-project
-3) then go to the directory:
+c) then go to the directory:
 cd my-new-project
-4) and run the project
+d) and run the project
 
 
--> The Local Expo CLI was introduced in Expo SDK 46, so it is defined in package.json as
+3> The Local Expo CLI was introduced in Expo SDK 46, so it is defined in package.json as
             "private": true,
             "resolutions":{
                 "@expo/cli":"xxx"
             }
     this solves the problem for the error like "global expo cli has been deprecated"
 
--> view, button, text are components(like tags in html)
+4> view, button, text are components(like tags in html)
+    a) all the components imported from react native have first letter capital unlike html tags have first letter capital.
+    b) View is not needed for only one text component but necessary for more than one text components
+    c) also we cannot write only in View component it shows error.
+
 
 
 
