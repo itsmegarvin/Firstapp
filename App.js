@@ -1,29 +1,22 @@
 import React from "react";
-import { Text, View, Button } from "react-native";
+import { Text, View, Button} from "react-native";
 
-function FirstPress(){
-  console.warn("first button pressed")
+let data = 10101010101010;
+
+function Firstbutton(){
+  let data=20
+  console.warn(data)
 }
 
-const App = () => 
-{
-  function SecondPress(){
-    console.warn("second button pressed")
-  }
-  const ThirdPress= (name)=>{
-    console.warn(name)
-  }
-
+const App= ()=>{
   return(
     <View>
-      <Text>Button and onpress event</Text>
-      <Button title="first press"  color={"green"}  onPress={FirstPress} >  </Button>
-      <Text>for second press</Text>
-      <Button title="second press"  color={"blue"}  onPress={SecondPress} />
-      <Text>for third press</Text>
-      <Button title="third press"  color={"skyblue"}  onPress={ ()=>ThirdPress("garvin")} />
+      <Text>{data}</Text>
+      <Button title="first button"  color={"red"}  onPress={Firstbutton} />
     </View>
   );
 }
+
+//the output of text is not updated to 20 because the function is not called, so if we need the same value as of button therfore 101010101010 then we need state.
 
 export default App;
