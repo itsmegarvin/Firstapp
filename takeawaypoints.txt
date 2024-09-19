@@ -30,6 +30,14 @@ d) and run the project
     a) before jsx we had to made the separate script to write the javascript code and then only we would be able to use it with html code.
     b)  we can now write html tags and react native components inside javascript 
 
+6> components in react native
+    a)independent and reusable such as function
+    b)two types of components (functional,class based)
+    c)why different component folder is needed?
+
+
+    function Vs component
+
 
 
 
