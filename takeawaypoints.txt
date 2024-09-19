@@ -35,8 +35,11 @@ d) and run the project
     b)two types of components (functional,class based)
     c)why different component folder is needed?
 
-
     function Vs component
+
+7> button and onpress event.    
+    a) mobile application so press not click
+    b) button properties like title,color,onpress. 
 
 
 
