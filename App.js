@@ -1,22 +1,46 @@
 import React from "react";
+import { useState } from "react";  //in RN if use word the understand that it is hook
 import { Text, View, Button} from "react-native";
 
-let data = 10101010101010;
+const App= ()=>
+{
+  const [name, SetName]= useState("Garvin")  //name is for giving default value garvin and setname is for giving update value.
+  let data="Phil"
 
-function Firstbutton(){
-  let data=20
-  console.warn(data)
-}
-
-const App= ()=>{
+  //important one
+  function UpdateName(){
+    SetName("Raheem")
+    data="Foden"
+  }
   return(
     <View>
-      <Text>{data}</Text>
-      <Button title="first button"  color={"red"}  onPress={Firstbutton} />
+      <Text>{name}</Text> 
+      <Text>{data}</Text> 
+      <Button title="first button"  color={"red"}  onPress={UpdateName} />
     </View>
   );
 }
 
-//the output of text is not updated to 20 because the function is not called, so if we need the same value as of button therfore 101010101010 then we need state.
 
-export default App;
+
+export default App; 
+
+/*o/p is like
+  garvin
+  phil
+  red button 
+so when the button is pressed then the o/p is like 
+  Raheem
+  phil 
+  red button 
+
+from the result we can conclude that the varible wont re-render the functional component
+
+
+And important thing is we cannot use the state
+
+*/ 
+
+
+
+
