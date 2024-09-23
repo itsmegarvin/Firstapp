@@ -1,40 +1,55 @@
-import React from "react";  //in RN if use word the understand that it is hook
-import { Text, View, Button} from "react-native";
-import { useState } from "react";
+import React from "react"; 
+import { Text, View, StyleSheet} from "react-native";
+import Exstyles from './src/components/externalStyles'
 
-const App= ()=> //component name always capital
+
+const App= () => //component name always capital
 {
-  //let name ="garvin"
-  const [name,setName]  = useState("garvin")
-  return(
+   return(
     <View>
-      <Text style={{fontSize:30}}>concept of props</Text> 
-      <Button title=" Update Props "  color={"skyblue"}  onPress={()=>setName("sagress")}  />
-      <User name = {name} age="22" />
+      <Text style={{fontSize:30, color:"red" }}>INLINE STYLE</Text>
+
+      <Text style={styles.textbox}>INTERNAL STYLE</Text> 
+      <Text style={styles.textbox}>INTERNAL STYLE</Text> 
+      <Text style={Exstyles.textbox}>EXTERNAL STYLE</Text> 
+      <Text style={[styles.textbox, Exstyles.textbox, {borderColor:"pink"}, {borderWidth:5}]}>This is hybrid </Text>
     </View>
   );
 }
 
-const User = (props)=>{//here props is arguement you can write any name instead props
-  //console.warn(props)// this prints name="sagar". Also console.warn("props.name") prints sagar
-  return(
-    <View style={{backgroundColor:"pink", padding:"5"}}>
-     <Text style={{fontSize:20}}> {props.name} </Text>
-     <Text style={{fontSize:20}}> {props.age} </Text>
-    </View>
-  );
-}
+const styles= StyleSheet.create({
+  textbox:{ //here we can give any name instead textbox and styles
+    color:"#fff",
+    fontSize:40,
+    backgroundColor:"orange",
+    marginBottom:10,
+    padding:10,
+    borderRadius:100,
+    height:100,
+    textAlignVertical:"center",
+    textAlign:"center",
+    borderColor:"red",//bordercolor appears along with borderwidth
+    borderWidth:4
+  }
+})
 
 
-export default App; 
+export default App;
 
 /*
->so props are arguement
->here in above code data passed from parent to child we can pass from child to parent as well which is called "lifting up state".
->here we have made the use of state because we need to update the value of variable named name.
->And importantly we cannot send the data assigned to state from one component to other, we must use props for that.
->Again whenever state updates it re-renders the component, whenever the props updates it re-renders the component but variable doesnot re-renders the component.
->in above code, separate function is not made to update the name of the state.
+> so styles are inline,internal,external and hybrid
+>for inline style={{}}
+>for internal style={styles.textbox} and separate component for style as 
+ const styles = StyleSheet.create({
+  textbox:{
+    color:blue,
+    fontSize:25
+  }
+ })
+
+ >for external style we make separate file and make same component as in internal but just replace const with export default. 
+ >for hybrid just make array of the objects inside styles.
+
 
 */ 
 
