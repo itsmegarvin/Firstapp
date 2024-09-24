@@ -39,11 +39,32 @@ d) and run the project
 
 7> button and onpress event.    
     a) mobile application so press not click
-    b) button properties like title,color,onpress. 
+    b) button properties like title,color,onpress.
+    c) passing values to onpress property of button
+    d) also button does not takes styles, above color onPress are not styles but properties. If they need to style then we should include that button inside separate view component
+
+8> state in react native
+    a) basically properties like state,props,components are of react. As react-native is the framework   based on react so, we can use the properties of react as well.
+    b)state vs variables
+    .update on state re-renders the components while update on variables wont.
+    .there is only one state for one component. state of one component cannot be used by other component, which means data of state cannot be shared between the components.
+    .but the name of state can be same for different components.
+
+9> Props in RN 
+    a) props : props are used to send/transfer/share between the components
+    props are like arguements in function.
+    b) State Vs Props.
+
+10> Styles in RN
+    a) types of styles are inline, internal, external, hybrid
+    b) why styles={{}} double braces?
+    so one for objects and another for jsx.
+    c) buttons does not accept styles. If they need to then we should include that button inside separate view component
 
 
-
-
-->file structure
-->Text,View,Button and concept of SafeAreaView in StatusBar
+11> TextInput in react native
+    a) this is used to take text input from the users.
+    b) special property onChangeText={(text)=>setName(text)}
+    here default state name is updated by text.
+    c) also for each textinput we can make different state as we can see that in various projects, but we can include all the textinputs in one state as well.
 
