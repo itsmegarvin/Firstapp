@@ -67,21 +67,17 @@ const App= () => //component name always capital
   return(
     <View>
       <Text style={{fontSize:50, color:"black"}}>Dynamic Grids</Text>
-      
+      <ScrollView>
       <View style={{flex:1, flexDirection:"row", flexWrap:"wrap"}}>
         {
           Users.map((item)=>
             <Text style={styles.textList}>{item.name}</Text>
           )
         }
-
       </View>
+      </ScrollView>
 
-
-      
-
-      
-    </View>
+  </View>
   );
 }
 
