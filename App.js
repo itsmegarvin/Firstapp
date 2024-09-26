@@ -66,15 +66,20 @@ const App= () => //component name always capital
 
   return(
     <View>
-      <Text style={{fontSize:50, color:"black"}}>list with map function(custom)</Text>
+      <Text style={{fontSize:50, color:"black"}}>Dynamic Grids</Text>
       
-      <ScrollView>
-      {
-        Users.map((data)=>
-            <Text style={styles.textList}>{data.name}</Text> //data is like arguement any name instead data.
-        )
-      }
-      </ScrollView>
+      <View style={{flex:1, flexDirection:"row", flexWrap:"wrap"}}>
+        {
+          Users.map((item)=>
+            <Text style={styles.textList}>{item.name}</Text>
+          )
+        }
+
+      </View>
+
+
+      
+
       
     </View>
   );
@@ -83,13 +88,17 @@ const App= () => //component name always capital
 
 const styles= StyleSheet.create({
     textList:{
-      fontSize:20,
-      color:"#fff",
-      margin:15,
-      backgroundColor:"skyblue",
-      borderRadius:20,
-      borderColor:"Black",
-      borderWidth:3,
+        fontSize:30,
+        color:"white",
+        backgroundColor:"skyblue",
+        margin:5,
+        padding:5,
+        width:165,
+        height:120,
+        textAlignVertical:"center",
+        textAlign:"center"
+
+
 
     }
 })
@@ -98,13 +107,8 @@ const styles= StyleSheet.create({
 export default App;
 
 /*
->there are different kinds of lists.(flatlist, selection list)
->But if you want to make list without using properties of RN like Flatlist or selection list then we use map function(custom)
->basically map is property of javascript, that loops the functions and returns for every loop. that is why it used rather than loops like for, while in javascript.
->flatlist also uses map function internally.
->but why flatlist is preferred?
-  - because flatlist has its own property to scroll the view but we need to write code for map. also if there are thousands of item in a list then it lags for map but flatlist easily scrolls as it removes the item that is not showing in the screen.
->we can encounter various problems while using map function.
+
+grids(static,dynamic)
 
 */
 
