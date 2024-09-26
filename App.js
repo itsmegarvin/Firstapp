@@ -1,113 +1,83 @@
-import React from "react"; 
-import { Text, View,StyleSheet, ScrollView } from "react-native";
+import React from "react";
+import { Text, View, StyleSheet, FlatList } from "react-native";
 
+const App = () =>
+  //component name always capital
+  {
+    const Users = [
+      //this is array
+      {
+        //this is object
+        id: 1,
+        name: "garvin",
+      },
+      {
+        id: 2,
+        name: "sagress",
+      },
+      {
+        id: 3,
+        name: "peter",
+      },
+      {
+        id: 10,
+        name: "jake",
+      },
+    ];
 
-
-const App= () => //component name always capital
-{
-  const Users= [//this is array
-      {//this is object
-        id:1,
-        name:"garvin"
-      },
-      {
-        id:2,
-        name:"sagress"
-      },
-      {
-        id:3,
-        name:"peter"
-      },
-      {
-        id:10,
-        name:"jake"
-      },
-      {
-        id:14,
-        name:"jacob"
-      },
-      {
-        id:19,
-        name:"aher"
-      },
-      {
-        id:29,
-        name:"jacky"
-      },
-      {
-        id:50,
-        name:"jakson"
-      },
-      {
-        id:55,
-        name:"jakennn"
-      },
-      {
-        id:66,
-        name:"ake"
-      },
-      {
-        id:100,
-        name:"jaa"
-      },
-      {
-        id:101,
-        name:"foden"
-      },
-      {
-        id:150,
-        name:"james"
-      },
-      {
-        id:180,
-        name:"jalbi"
-      }
-  ]
-
-  return(
-    <View>
-      <Text style={{fontSize:50, color:"black"}}>Dynamic Grids</Text>
-      <ScrollView>
-      <View style={{flex:1, flexDirection:"row", flexWrap:"wrap"}}>
-        {
-          Users.map((item)=>
-            <Text style={styles.textList}>{item.name}</Text>
-          )
-        }
+    return (
+      <View>
+        <Text style={{ fontSize: 40 }}>component in loop with flatlist</Text>
+        <FlatList
+          data={Users}
+          renderItem={({item}) =><UserData item={item} /> }
+          //items in data is passed as an object to the props like and arguement
+         
+        />
       </View>
-      </ScrollView>
+    );
+  };
 
+const UserData=(props)=>{
+  info=props.item;
+  return(
+    <View style={styles.box}>
+    <Text style={styles.itemStyle}>{info.name}</Text>
+    <Text style={styles.itemStyle}>{info.id}</Text>
   </View>
   );
 }
 
 
-const styles= StyleSheet.create({
-    textList:{
-        fontSize:30,
-        color:"white",
-        backgroundColor:"skyblue",
-        margin:5,
-        padding:5,
-        width:165,
-        height:120,
-        textAlignVertical:"center",
-        textAlign:"center"
 
+const styles = StyleSheet.create({
+  itemStyle: {  //item is for text
+    fontSize: 30,
+    color: "white",
+    backgroundColor: "skyblue",
+    flex: 1,
+    padding: 5,
+    width: 165,
+    height: 120,
+    textAlignVertical: "center",
+    textAlign: "center",
+  },
+  box:{ // box is for styling view
+    flexDirection:"row",
+    borderWidth:2,
+    borderColor:"blue",
+    marginBottom:10
+  }
 
-
-    }
-})
-
+});
 
 export default App;
 
 /*
 
-grids(static,dynamic)
+>component in loop with flatlist
+>concept of props as well.
+>here in above example in app() ,data is assigned with all the value of Users() therfore list  and those items is then passed as an object from app() to UserData() then UserData() receives as a props.
+
 
 */
-
-
-
-
