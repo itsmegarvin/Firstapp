@@ -68,3 +68,11 @@ d) and run the project
     here default state name is updated by text.
     c) also for each textinput we can make different state as we can see that in various projects, but we can include all the textinputs in one state as well.
 
+12> Flatlist in RN
+    a) various kind of list that is static or dynamic.
+    b) flatlist may include state with list, or simply variables with list .
+    c) const list= [
+            {},{},{}
+        ]
+    d) also list can be like
+        const list= ['hello', 'hi', 'goodmorning', 'goodevening']
