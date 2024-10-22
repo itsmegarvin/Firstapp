@@ -1,3 +1,5 @@
+
+// use of ,[] for useEffect hook as ComponentDidMount
 import React, { useState, useEffect } from "react";
 import { Text, View, Button } from "react-native";
 
@@ -6,7 +8,7 @@ function App() {
 
   useEffect(() => {
     console.warn("hello");
-  });
+  },[]);  //very much important step , therfore use of ,[]
 
   function rmCount() {
     setCount(0);
@@ -31,9 +33,6 @@ function App() {
 export default App;
 
 /*
->basically state, props, lifecycle methods are the concepts of class component. so inorder to use these concepts in functional component facebook introduced hooks in react.js and reactnative. Also useState is used for states and useEffect is used for lifecycle methods.
-
->useEffect, mounts(loads) the functional component initially by calling itself, also whenever there is changes in the code either in state/props then it again calls itself.
 
 >we can only use the hook useEffect to only mount the component using the array like ,[]  we call this as useEffect as componentDidMount.
 
