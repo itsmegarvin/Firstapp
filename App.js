@@ -1,42 +1,53 @@
 import React from "react";
-import { Text, View, Button } from "react-native";
+import { Text, View, Button,TextInput } from "react-native";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 class App extends React.Component {
-  fruit = () => {
-    console.warn("apple");
-  };
+  constructor(){
+    super();
+    this.state={
+      name:"samuel",
+    }
+  }
 
-  render() {
-    return (
+  updateName(val){
+    this.setState({name:val})
+  }
+  
+    render(){
+    return(
       <View>
-        <Text style={{ fontSize: 30 }}>Class component in RN</Text>
-        <Button
-          title="press me"
-          color="green"
-          onPress={() => this.fruit()}
-        ></Button>
-        <Student />
+          <Text style={{fontSize:30, color:'blue'}}>state and props in class component</Text>
+          <Text>{this.state.name}</Text>
+          <TextInput
+              placeholder="Enter your name"
+              onChangeText={(text)=>this.updateName(text)}
+          />
+          <Student name={this.state.name} 
+          />
       </View>
+
     );
   }
+
 }
 
 class Student extends React.Component {
-  render() {
-    return <Text style={{ fontSize: 20 }}>student class</Text>;
+  render(){
+    // console.warn(this.props)
+    return(
+      <Text style={{fontSize:20, color:'green'}}>student name: {this.props.name}</Text>
+
+    );
   }
+  
 }
 
 export default App;
 
 /*
->why class component ?
- -sometimes we may have to deal with the application that were developed many years ago. that means which used class component. so for that also we have to get the Prior knowledge about the class component.
-> it is just like the class in OOP programming language with inheriting the properties of react using the keyword extend.
-
->we cant use const let for the varible in class component
->why render used?
-  - basically class does not return anything but if functions does. so there is function kept inside that class that returns something. that function is nothing but render(){}
+>for state in class component we need constructor. 
+>super keyword is used to call the costructor of the  parent class.
 
 
 
