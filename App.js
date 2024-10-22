@@ -1,54 +1,40 @@
-import React from "react";
-import { Text, View, Button,TextInput } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import React, { useState, useEffect } from "react";
+import { Text, View, Button } from "react-native";
 
-class App extends React.Component {
-  constructor(){
-    super();
-    this.state={
-      name:"samuel",
-    }
+function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.warn("hello");
+  });
+
+  function rmCount() {
+    setCount(0);
   }
 
-  updateName(val){
-    this.setState({name:val})
-  }
-  
-    render(){
-    return(
-      <View>
-          <Text style={{fontSize:30, color:'blue'}}>state and props in class component</Text>
-          <Text>{this.state.name}</Text>
-          <TextInput
-              placeholder="Enter your name"
-              onChangeText={(text)=>this.updateName(text)}
-          />
-          <Student name={this.state.name} 
-          />
+  return (
+    <View>
+      <Text style={{ fontSize: 40, color: "green" }}>
+        useEffect for lifecycle methods
+      </Text>
+      <Text style={{ fontSize: 30, color: "blue" }}>
+        Current count: {count}
+      </Text>
+      <Button title="increase count" onPress={() => setCount(count + 1)} />
+      <View style={{ marginTop: 10 }}>
+        <Button title="clear count" onPress={rmCount} />
       </View>
-
-    );
-  }
-
-}
-
-class Student extends React.Component {
-  render(){
-    // console.warn(this.props)
-    return(
-      <Text style={{fontSize:20, color:'green'}}>student name: {this.props.name}</Text>
-
-    );
-  }
-  
+    </View>
+  );
 }
 
 export default App;
 
 /*
->for state in class component we need constructor. 
->super keyword is used to call the costructor of the  parent class.
+>basically state, props, lifecycle methods are the concepts of class component. so inorder to use these concepts in functional component facebook introduced hooks in react.js and reactnative. Also useState is used for states and useEffect is used for lifecycle methods.
 
+>useEffect, mounts(loads) the functional component initially by calling itself, also whenever there is changes in the code either in state/props then it again calls itself.
 
+>we can only use the hook useEffect to only mount the component using the array like ,[]  we call this as useEffect as componentDidMount.
 
 */
