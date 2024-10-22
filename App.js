@@ -5,27 +5,24 @@ import { Text, View, Button } from "react-native";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [data, setData] = useState(100);
 
   useEffect(() => {
-    console.warn("hello");
-  },[]);  //very much important step , therfore use of ,[]
+    console.warn(count);
+  },[count]); //we can use as [count, data]
 
-  function rmCount() {
-    setCount(0);
-  }
+
+  //we can make separate useEffect for different state
+  
+
 
   return (
     <View>
-      <Text style={{ fontSize: 40, color: "green" }}>
-        useEffect for lifecycle methods
-      </Text>
-      <Text style={{ fontSize: 30, color: "blue" }}>
-        Current count: {count}
+      <Text style={{ fontSize: 30, color: "green" }}>
+              {data} useEffect as componentDidUpdate {count}
       </Text>
       <Button title="increase count" onPress={() => setCount(count + 1)} />
-      <View style={{ marginTop: 10 }}>
-        <Button title="clear count" onPress={rmCount} />
-      </View>
+      <Button title="increase data" onPress={() => setData(data + 1)} />
     </View>
   );
 }
