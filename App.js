@@ -1,48 +1,66 @@
 
-// concept of toggle, show and hide
-import React, { useState, useEffect} from "react";
-import { Text, View, Button } from "react-native";
+import React from "react";
+import { View, StyleSheet } from "react-native";
 
 function App() {
-  const[show, setShow]= useState(true);
 
   return(
-    <View>
-    <Text style={{fontSize:30, color:'orange'}}>useEffect while unmounting</Text>
-    <Button  title= "toggle " color={"green"} onPress={()=>setShow(!show)}/> 
-  
-      {
-        show ? <User/> : null
-      }
-  </View>
+    <View style={styles.main}>
+        <View style={styles.box1}>
+            <View style={styles.innerbox1}></View>
+            <View style={styles.innerbox2}></View>
+            <View style={styles.innerbox3}></View>
+        </View>
+        <View style={styles.box2}></View>
+        <View style={styles.box3}></View>
+
+    </View>
+    
   );
 }
 
+const styles= StyleSheet.create({
+    main:{
+      flex:1,  // this considers the whole screen.
+      // flexDirection:"row"
+    },
+    box1:{
+      flex:1,
+      backgroundColor:"lightblue",
+      flexDirection:"row"
+    },
+    box2:{
+      flex:1,
+      backgroundColor:"mediumslateblue"
+    },
+    box3:{
+      flex:1, 
+      backgroundColor:"midnightblue"
+    },
+    innerbox1:{
+      flex:1,
+      backgroundColor:"steelblue",
+      margin:10
+    },
+    innerbox2:{
+      flex:1,
+      backgroundColor:"cornflowerblue",
+      margin:10
+    },
+    innerbox3:{
+      flex:1,
+      backgroundColor:"royalblue",
+      margin:10
+    }
 
-const User = () => {
-
-  useEffect(()=>{
-    return ()=>{console.warn("useEffect called")}    
 })
 
-  return(
-    <View>
-      <Text style={{fontSize:20, color:'orange'}}> user component </Text>
-    </View>
-  );
-}
 
 
 export default App;
 
 /*
-
->so this simple concept of toggle, hide and show is how we unmount the UI.
-> so for  LCM (lifecycle methods) basically while unmounting(hiding component), useEffect wont work. But works for showing.
-> IMP Qn
-> why is there return in useEffect hook?
-> we have to make small change in the useEffect adding return function.
-> As a result useEffect is called for unmounting and not for mounting, just opposite than before. 
-> so then what is the use of this unmounting even the UI is hidden from the application?????
-> perfect example is to remove the timers.
+> Creating an responsive UI.
+> its all about manipulating flex.
+> types of blue color (blue,lightblue,darkblue,darkslateblue,skyblue,lightskyblue,lightsteelblue, mediumblue, mediumslateblue, midnightblue, navy, royalblue,slateblue,steelblue,cornflowerblue,cadetblue,dodgerblue)
 */
