@@ -1,18 +1,24 @@
-
+/* Styling button in RN using touchableHighlight and touchableOpacity */
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import {Text, View, StyleSheet, TouchableHighlight } from "react-native";
 
 function App() {
 
   return(
     <View style={styles.main}>
-        <View style={styles.box1}>
-            <View style={styles.innerbox1}></View>
-            <View style={styles.innerbox2}></View>
-            <View style={styles.innerbox3}></View>
-        </View>
-        <View style={styles.box2}></View>
-        <View style={styles.box3}></View>
+          <TouchableHighlight>
+            <Text style={styles.button}>Login</Text>
+          </TouchableHighlight>
+          <TouchableHighlight>
+            <Text style={[styles.button, styles.signup]}>Sign up</Text>
+          </TouchableHighlight>
+          <TouchableHighlight>
+            <Text style={[styles.button, styles.warning]}>warning</Text>
+          </TouchableHighlight>
+          <TouchableHighlight>
+            <Text style={[styles.button, styles.error]}>error</Text>
+          </TouchableHighlight>
+        
 
     </View>
     
@@ -23,35 +29,24 @@ const styles= StyleSheet.create({
     main:{
       flex:1,  // this considers the whole screen.
       // flexDirection:"row"
+      backgroundColor:"cadetblue",
+      margin:15
     },
-    box1:{
-      flex:1,
-      backgroundColor:"lightblue",
-      flexDirection:"row"
+    button:{
+      fontSize:20,
+      backgroundColor:"midnightblue",
+      color:'#fff',
+      textAlign:"center",
+      margin:10,
+      padding:5,
+      borderRadius:10,
+      shadowColor:"red",
+      elevation:5,
+      shadowOpacity:1
     },
-    box2:{
-      flex:1,
-      backgroundColor:"mediumslateblue"
-    },
-    box3:{
-      flex:1, 
-      backgroundColor:"midnightblue"
-    },
-    innerbox1:{
-      flex:1,
-      backgroundColor:"steelblue",
-      margin:10
-    },
-    innerbox2:{
-      flex:1,
-      backgroundColor:"cornflowerblue",
-      margin:10
-    },
-    innerbox3:{
-      flex:1,
-      backgroundColor:"royalblue",
-      margin:10
-    }
+    signup:{backgroundColor:"skyblue"},
+    warning:{backgroundColor:"cornflowerblue"},
+    error:{backgroundColor:"midnightblue"}
 
 })
 
@@ -60,7 +55,6 @@ const styles= StyleSheet.create({
 export default App;
 
 /*
-> Creating an responsive UI.
-> its all about manipulating flex.
 > types of blue color (blue,lightblue,darkblue,darkslateblue,skyblue,lightskyblue,lightsteelblue, mediumblue, mediumslateblue, midnightblue, navy, royalblue,slateblue,steelblue,cornflowerblue,cadetblue,dodgerblue)
+> As we know that buttons cannot be styled like Text. But also with the use of touchableHighlight and touchableOpacity we can style the button.
 */
