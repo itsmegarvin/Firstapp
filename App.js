@@ -1,38 +1,33 @@
 
-// use of ,[] for useEffect hook as ComponentDidMount
-import React, { useState, useEffect } from "react";
+// concept of toggle, show and hide
+import React, { useState} from "react";
 import { Text, View, Button } from "react-native";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [data, setData] = useState(100);
+  const[show, setShow]= useState(true);
 
-
-  return (
+  return(
     <View>
-      <Text style={{ fontSize: 30, color: "green" }}>
-              {data} useEffect for props {count}
-      </Text>
-      <Button title="increase count" onPress={() => setCount(count + 1)} />
-      <Button title="increase data" onPress={() => setData(data + 1)} />
-      <User info={{data,count}}/>
-    </View>
+    <Text style={{fontSize:30, color:'orange'}}>Show hide and toggle</Text>
+    {/* <Button  title= "hide component" color={"blue"} onPress={()=>setShow(false)}/>
+    <Button  title= "show component" color={"green"} onPress={()=>setShow(true)}/> */} 
+    <Button  title= "toggle component" color={"green"} onPress={()=>setShow(!show)}/> 
+  
+      {
+        show ? <User/> : null
+      }
+  </View>
   );
+  
+
 }
 
-const User = (props) => {
-
-  useEffect(()=>{
-    console.warn("this is for count");
-  },[props.info.count])
-
-  return (
+const User = () => {
+  return(
     <View>
-      <Text>data:{props.info.data}  count:{props.info.count}</Text>
-      
+      <Text style={{fontSize:20, color:'orange'}}> user component </Text>
     </View>
   );
-
 }
 
 
@@ -40,6 +35,6 @@ export default App;
 
 /*
 
->we can only use the hook useEffect to only mount the component using the array like ,[]  we call this as useEffect as componentDidMount.
-
+>so this simple concept of toggle, hide and show is how we unmount the UI.
+> this concept is alsoo used in lifecycle methods.
 */
