@@ -1,73 +1,65 @@
-/* This is all about modal (dialog box)*/
-import React,{useState} from "react";
-import { Text, View, Button, StyleSheet, Modal } from "react-native";
+/* Pressable in React-Native*/
+import React from "react";
+import { Text, View, StyleSheet, Pressable,Alert  } from "react-native";
 
-function App() {
-
-  const [showModal,setShowModal]= useState(false)
-
-  return(
+const App = () => {
+  return (
     <View style={styles.main}>
-      <Modal transparent={true} visible={showModal}>
-        <View style= {styles.centerView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Modal message is here for you</Text>
-            <Button title= "close modal" onPress={()=>setShowModal(false)}/>
-          </View>
-        </View>
-      </Modal>
-      <View style={styles.buttonView}>
-        <Button title="open modal" onPress={()=>setShowModal(true)} />
-      </View>
+      <Pressable
+        onPress={() => {
+          alert("normal press");
+        }}
+        onLongPress={()=>{
+          console.warn("long press")
+        }}
+        onPressIn={() => {
+          console.log("press in");
+        }}
+        onPressOut={() => {
+          Alert.alert("press out");
+        }}
+        style={styles.pressableBtn}
+      >
+        <Text style={styles.pressableTxt}>Pressable</Text>
+      </Pressable>
     </View>
-    
   );
-}
+};
 
 const styles = StyleSheet.create({
   main: {
-    flex: 1
-  },
-  buttonView: {
-    flex:1,
-    justifyContent:"flex-end"
-  },
-  centerView: {
-    flex:1,
+    flex: 1,
     justifyContent: "center",
-    alignItems: "center",
   },
-  modalView: {
-    backgroundColor: 'white',
-    padding: 30,
-    borderRadius: 10,
-    shadowColor: "black",
-    elevation: 10,
-    
+  pressableBtn: {
+    backgroundColor: "cornflowerblue",
+    padding: 10,
+    margin: 20,
+    borderRadius: 5,
+    shadowColor: "#000",
+    elevation: 5,
   },
-  modalText: {
-    fontSize:20,
-    padding: 10
-  }
+  pressableTxt: {
+    color: "#fff",
+    fontSize: 20,
+    textAlign: "center",
+  },
 });
-
-
 
 export default App;
 
-
 /*
 
-A modal/dialogue box in React Native is a temporary, overlaying component used to display important information or prompt user interaction without navigating away from the main screen.
+Pressable is a touchable component that responds to various user interactions with customizable feedback.
 
-modal takes the full screen by overwriting the context, so we should make use of transparency.
+onPress: Fires when the user taps and releases.
+onPressIn: Fires when the user starts pressing.
+onPressOut: Fires when the user stops pressing.
+onLongPress: Fires on prolonged press.
+disabled: Disables interaction.
 
-also use two views component at the starting of the modal.
+here from the time i learned pressable ,console.warn didn't worked due updation so i had to use Alert
 
-Focused Content: Overlays the main screen to capture attention.
-Prompt User Decisions: Used for confirmations, alerts, or important actions.
-Show Extra Info: Reveals more details without changing screens.
-Quick Input: Ideal for short forms or data entry.
-Customizable Layout: Allows flexible sizing and positioning for varied content.
+delay time for long press is 500ms that is half a second
 
 */
