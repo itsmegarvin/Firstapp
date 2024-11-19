@@ -1,48 +1,52 @@
 /* (eg webview package) in React-Native */
-import React, { useState } from "react";
+import React from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
-
-  const[show, setShow]= useState(false)
-
   return (
     <View style={styles.main}>
-      {
-        show
-        ?
-        <View style={styles.modal}>
-        <View style={styles.body}>
-          <Text>our custom modal</Text>
-          <Button title="close" color="cornflowerblue" onPress={()=>setShow(false)}/>
-        </View>
-        </View>
-        :
-        null
-      }
-      <Button title="open custom modal" color="cornflowerblue" onPress={()=>{setShow(true)}}/>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Home" component={Home} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </View>
   );
+};
+
+const Home = () => {
+  return (
+    <View style={styles.homepg}>
+      <Text >home page</Text>;
+    </View>
+  );
+
+};
+
+const Login = (props) => {
+  return(
+  <View style={styles.loginpg}>
+      <Text >login page</Text>;
+      <Button title="go to home" color="skyblue" onPress={()=>{props.navigation.navigate("Home")}}/>
+  </View> );
 };
 
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    justifyContent: "flex-end",
   },
-  modal: {
+  homepg: {
     flex: 1,
-    backgroundColor: "rgba(50,50,50,.5)",
-    justifyContent: "center",
     alignItems: "center",
   },
-  body: {
-    backgroundColor: "#fff",
-    height: 200,
-    width: 300,
-    justifyContent: "flex-end",
-    padding: 20,
-    borderRadius: 10,
+  loginpg: {
+    flex: 1,
+    alignItems: "center",
   },
 });
 
