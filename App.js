@@ -1,17 +1,24 @@
-
 import React from "react";
-import { View, Button, Text, StyleSheet } from "react-native";
+import { View, Button, Text, StyleSheet, Alert } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+
+  const btnPress = ()=>{
+    Alert.alert("left button pressed")
+  };
+
   return (
     <View style={styles.main}>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
+            headerTitle:()=><Button title="left" color={"midnightblue"} onPress={btnPress}/>,
+            headerRight:()=><Button title="right" color={"midnightblue"}/>,
+            // headerRight:()=><Header/>,
             headerStyle:{
               backgroundColor:"skyblue"
             },
@@ -56,6 +63,14 @@ const Login = (props) => {
   </View> );
 };
 
+// const Header = ()=>{
+//     return(
+//       <View>
+//         <Text> this is header screen</Text>
+//       </View>
+//     );
+// };
+
 const styles = StyleSheet.create({
   main: {
     flex: 1,
@@ -80,5 +95,6 @@ export default App;
 
 >navigation screeen cannot be styled  like other styling properties, we rather use options inside the stackscreen component or navigationcontainer.
 >  we can  do styling  inside navigationcontainer and stack.navigator as well.
+> we can pass the functional component either in headerTitle and headerRight.
 
 */
