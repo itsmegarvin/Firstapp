@@ -85,3 +85,4 @@ d) and run the project
         >useEffect is only used for lifecycle methods in functional component.
 16> show, hide and toggle the component
 17> responsive UI
+18> types of navigator(stack, drawer, tab)
