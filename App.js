@@ -1,7 +1,8 @@
-import React from "react";
-import { View, Button, Text, StyleSheet, Alert } from "react-native";
+import React, { useState } from "react";
+import { View, Button, Text, TextInput, StyleSheet, Alert } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -46,20 +47,30 @@ const App = () => {
   );
 };
 
-const Home = () => {
+const Home = (props) => {
+  
+  const {name,age}= props.route.params  //concept of destructor
   return (
     <View style={styles.homepg}>
       <Text >home page</Text>;
+      <Text >name:{name}</Text>;
+      <Text >age:{age}</Text>;
     </View>
   );
 
 };
 
 const Login = (props) => {
+  const [name,setName]= useState("")
+  const age=20
   return(
   <View style={styles.loginpg}>
       <Text >login page</Text>;
-      <Button title="go to home" color="skyblue" onPress={()=>{props.navigation.navigate("Home")}}/>
+      <Button title="go to home" color="skyblue" onPress={()=>{props.navigation.navigate("Home",{name,age})}}/>
+      <TextInput
+      style={{fontSize:20, borderColor:"gray", borderWidth:5}}
+      placeholder="enter name"
+      onChangeText={(text)=>setName(text)}/>
   </View> );
 };
 
