@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { View, Button, Text, TextInput, StyleSheet, Alert } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs"
 
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialTopTabNavigator();
 
 const App = () => {
   return(
