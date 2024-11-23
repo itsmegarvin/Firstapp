@@ -1,18 +1,17 @@
-import React, { useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet , ScrollView} from "react-native";
 
 const App = () => {
+
+  const [data,setData] = useState([])
+
   const getApiData = async () => {
-    const url = "https://jsonplaceholder.typicode.com/posts/1";
+    const url = "https://jsonplaceholder.typicode.com/posts";
     // you can simply use api without try/catch also
-    try {
-      let result = await fetch(url);
+      let result = await fetch(url);//by default it is  get http method
       result = await result.json();
-      result=(JSON.stringify(result, null, 2)); // Convert object to a string for display
-      alert(result)
-    } catch (error) {
-      alert("Error fetching data: " + error.message);
-    }
+      setData(result)
+    
   };
 
   useEffect(() => {
@@ -20,9 +19,22 @@ const App = () => {
   },[]);
 
   return (
-    <View >
-      <Text >API Call Example</Text>
-    </View>
+    <ScrollView>
+      <Text style={{fontSize:40, color:"blue"}}>List of Api Call</Text>
+      {
+        data.length
+        ?
+        data.map((item)=> // you can use curly braces along with return
+          <View style={{fontSize:20, padding:10, margin:10, borderBottomColor:"#ccc", borderBottomWidth:5}}>
+            <Text>Id : {item.id}</Text>
+            <Text>Title : {item.title}</Text>
+            <Text>Body : {item.body}</Text>
+          </View>
+        )
+        :
+        null
+      }
+    </ScrollView>
   );
 };
 
