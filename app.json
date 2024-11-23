@@ -27,7 +27,8 @@
       "updates": {
         "fallbackToCacheTimeout": 0,
         "checkAutomatically": "ON_LOAD"
-      }
+      },
+      "newArchEnabled": true
     
   }
 }
