@@ -1,46 +1,30 @@
-import React, { useState } from "react";
-import { View, Button, Text, TextInput, StyleSheet, Alert } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs"
-
-
-const Tab = createMaterialTopTabNavigator();
+import React, { useEffect } from "react";
+import { View, Text, StyleSheet } from "react-native";
 
 const App = () => {
-  return(
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="login" component={Login}/>
-        <Tab.Screen name="signUp" component={SignUp}/>
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
+  const getApiData = async () => {
+    const url = "https://jsonplaceholder.typicode.com/posts/1";
+    // you can simply use api without try/catch also
+    try {
+      let result = await fetch(url);
+      result = await result.json();
+      result=(JSON.stringify(result, null, 2)); // Convert object to a string for display
+      alert(result)
+    } catch (error) {
+      alert("Error fetching data: " + error.message);
+    }
+  };
 
-}
+  useEffect(() => {
+    getApiData();
+  },[]);
 
-const Login = ()=>{
-  return(
-    <View>
-      <Text>
-        this is login page
-      </Text>
+  return (
+    <View >
+      <Text >API Call Example</Text>
     </View>
   );
-}
-
-
-const SignUp = ()=>{
-  return(
-    <View>
-      <Text>
-        this is signup page
-      </Text>
-    </View>
-  );
-}
-
- 
+};
 
 const styles = StyleSheet.create({
 });
@@ -48,7 +32,6 @@ const styles = StyleSheet.create({
 export default App;
 
 /*
-
-
-
+>here i have used alert because my version didn't support console.warn and within that alert i have used stringify to convert json format to the string because alert only supports strings.
+>The getApiData function is declared as async, which means it can use await to pause execution until promises are resolved.
 */
