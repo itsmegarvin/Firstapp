@@ -1,49 +1,65 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet , ScrollView} from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 
 const App = () => {
-
-  const [data,setData] = useState([])
+  const [data, setData] = useState([]);
 
   const getApiData = async () => {
     const url = "https://jsonplaceholder.typicode.com/posts";
-    // you can simply use api without try/catch also
-      let result = await fetch(url);//by default it is  get http method
-      result = await result.json();
-      setData(result)
-    
+    // Fetch the API data
+    let result = await fetch(url); // By default, it uses the GET HTTP method
+    result = await result.json();
+    setData(result); // Update state with the fetched data
   };
 
   useEffect(() => {
     getApiData();
-  },[]);
+  }, []);
 
   return (
-    <ScrollView>
-      <Text style={{fontSize:40, color:"blue"}}>List of Api Call</Text>
+    <View style={styles.container}>
       {
-        data.length
-        ?
-        data.map((item)=> // you can use curly braces along with return
-          <View style={{fontSize:20, padding:10, margin:10, borderBottomColor:"#ccc", borderBottomWidth:5}}>
-            <Text>Id : {item.id}</Text>
-            <Text>Title : {item.title}</Text>
-            <Text>Body : {item.body}</Text>
-          </View>
-        )
-        :
-        null
+        data.length 
+        ? 
+        <FlatList
+          data={data}
+          renderItem={({ item }) => (
+            <View style={styles.item}>
+              <Text>Id: {item.id}</Text>
+              <Text>Title: {item.title}</Text>
+              <Text>Body: {item.body}</Text>
+            </View>
+          )}
+          // keyExtractor={(item) => item.id.toString()} // Unique key for each item
+        />
+       : 
+       null
       }
-    </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+  },
+  item: {
+    marginBottom: 15,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+  },
 });
 
 export default App;
 
+
 /*
->here i have used alert because my version didn't support console.warn and within that alert i have used stringify to convert json format to the string because alert only supports strings.
->The getApiData function is declared as async, which means it can use await to pause execution until promises are resolved.
+Static/Dynamic Lists: Based on data source.
+FlatList(lazy loading)/SectionList/VirtualizedList: Optimized for React Native.
+Controlled Lists: Update dynamically with user interaction.
+Scrollable Lists: Allow for scrolling through long lists.
+
 */
