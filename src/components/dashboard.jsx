@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons'; // Make sure to install @expo/vector-icons if not already installed
 
 export default function Dashboard() {
   const [products, setProducts] = useState([]);
@@ -8,7 +9,7 @@ export default function Dashboard() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    fetch('http://192.168.101.2:3000/api/products') // Replace with your API URL
+    fetch('http://192.168.101.3:3000/api/products') // Replace with your API URL
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error('Error fetching products:', error));
@@ -23,7 +24,7 @@ export default function Dashboard() {
       <Image
         source={{ uri: item.image }}
         style={styles.productImage}
-        resizeMode="contain" // Ensures the image fits without cropping or stretching
+        resizeMode="contain"
       />
       <Text style={styles.productName}>{item.name}</Text>
       <Text style={styles.productPrice}>Price: NPR {item.price}</Text>
@@ -49,6 +50,7 @@ export default function Dashboard() {
         style={styles.scanButton}
         onPress={() => navigation.navigate('ScanToPay')}
       >
+        <Ionicons name="scan" size={24} color="#fff" />
         <Text style={styles.buttonText}>Scan to Pay</Text>
       </TouchableOpacity>
     </View>
@@ -70,16 +72,16 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
-    alignItems: 'center', // Centers content horizontally
+    alignItems: 'center',
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowRadius: 5,
     elevation: 3,
   },
   productImage: {
-    width: 100, // Adjust width as needed
-    height: 100, // Adjust height as needed
-    borderRadius: 10, // Optional for rounded corners
+    width: 100,
+    height: 100,
+    borderRadius: 10,
     marginBottom: 10,
   },
   productName: {
@@ -91,18 +93,25 @@ const styles = StyleSheet.create({
   productPrice: { fontSize: 16, color: 'cornflowerblue' },
   productQuantity: { fontSize: 14, color: '#6c757d' },
   scanButton: {
-    marginTop: 10,
-    padding: 10,
+    position: 'absolute',
+    bottom: 35, // Position above the tab navigation
+    right: 20, // Position to the right
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: 'cornflowerblue',
-    borderRadius: 10,
-    alignSelf: 'center',
-    width: '60%',
+    padding: 12,
+    borderRadius: 30, // Makes the button circular
+    elevation: 5, // Adds shadow for better UI
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
   },
   buttonText: {
     color: '#fff',
-    textAlign: 'center',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
+    marginLeft: 8, // Space between icon and text
   },
   emptyText: {
     textAlign: 'center',
