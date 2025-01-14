@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Dashboard from "./src/components/dashboard";
-import HelpAndSupport from "./src/components/helpandsupport";
+import Dashboard from "./src/components/Dashboard";
+import HelpAndSupport from "./src/components/HelpAndSupport";
 import SplashScreen from "./src/components/SplashScreen";
 const Tab = createBottomTabNavigator();
 
@@ -19,7 +19,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Dashboard" component={Dashboard} />
+        <Tab.Screen name="Inventory" component={Dashboard} />
         <Tab.Screen name="Help & Support" component={HelpAndSupport} />
       </Tab.Navigator>
     </NavigationContainer>

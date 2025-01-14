@@ -7,7 +7,7 @@ export default function HelpAndSupport() {
     <View style={styles.container}>
       <Text style={styles.title}>Help & Support</Text>
       <Text style={styles.content}>
-        For any issues or queries, please contact us at support@example.com or call +977-1234567890.
+        For any issues or queries, please contact us at support@example.com or call +977-9841229070.
       </Text>
     </View>
   );

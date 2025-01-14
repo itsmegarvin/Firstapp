@@ -10,7 +10,7 @@ export default function Dashboard() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    fetch('http://192.168.5.235:3000/api/products') // Replace with your API URL
+    fetch('http://192.168.101.2:3000/api/products') // Replace with your API URL
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error('Error fetching products:', error));
@@ -33,7 +33,7 @@ export default function Dashboard() {
     <View style={styles.container}>
       <TextInput
         style={styles.searchBar}
-        placeholder="\Search products...\"
+        placeholder="Search for products..."
         value={search}
         onChangeText={(text) => setSearch(text)}
       />
@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
   productCard: { backgroundColor: '#fff', padding: 15, borderRadius: 10, marginBottom: 10 },
   productImage: { width: '100%', height: 150, borderRadius: 10 },
   productName: { fontSize: 18, fontWeight: 'bold', marginVertical: 5 },
-  productPrice: { fontSize: 16, color: '#28a745' },
+  productPrice: { fontSize: 16, color: 'cornflowerblue' },
   productQuantity: { fontSize: 14, color: '#6c757d' },
-  scanButton: { marginTop: 20, padding: 15, backgroundColor: '#007bff', borderRadius: 10 },
+  scanButton: { marginTop: 2, marginLeft: 220, padding: 10, backgroundColor: 'cornflowerblue', borderRadius: 10 },
   buttonText: { color: '#fff', textAlign: 'center', fontSize: 16, fontWeight: 'bold' },
 });
