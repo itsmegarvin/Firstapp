@@ -9,7 +9,7 @@ export default function Dashboard() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    fetch('http://192.168.101.3:3000/api/products') // Replace with your API URL
+    fetch('http://192.168.101.2:3000/api/products') // Replace with your API URL
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error('Error fetching products:', error));
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   productQuantity: { fontSize: 14, color: '#6c757d' },
   scanButton: {
     position: 'absolute',
-    bottom: 35, // Position above the tab navigation
+    bottom: 15, // Position above the tab navigation
     right: 20, // Position to the right
     flexDirection: 'row',
     alignItems: 'center',

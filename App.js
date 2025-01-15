@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Dashboard from "./src/components/Dashboard";
 import HelpAndSupport from "./src/components/HelpAndSupport";
 import SplashScreen from "./src/components/SplashScreen";
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {
