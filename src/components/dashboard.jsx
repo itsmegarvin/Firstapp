@@ -9,7 +9,7 @@ export default function Dashboard() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    fetch('http://192.168.101.2:3000/api/products') // Replace with your API URL
+    fetch('http://192.168.5.235:3000/api/products') // Replace with your API URL
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error('Error fetching products:', error));

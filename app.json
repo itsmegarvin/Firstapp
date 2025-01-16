@@ -11,23 +11,28 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.vendME"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.vendME"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    
-      "updates": {
-        "fallbackToCacheTimeout": 0,
-        "checkAutomatically": "ON_LOAD"
-      },
-      "newArchEnabled": true
-    
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "checkAutomatically": "ON_LOAD"
+    },
+    "newArchEnabled": true,
+    "extra": {
+      "eas": {
+        "projectId": "86b14cfa-c6e9-4e37-b609-a7c8a85cd620"
+      }
+    }
   }
 }
