@@ -1,3 +1,15 @@
+first time using expo
+    > first download node, vscode
+    > then create expo project/ clone from the github
+    > run the project 
+        >"set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass"
+        > npm install
+        > npx expo login (only once)
+        > npx expo start
+    
+
+
+
 1>two methods for react native
 a.  without using expo
 b.  using expo
