@@ -2,7 +2,9 @@ first time using expo
     > first download node, vscode
     > then create expo project/ clone from the github
     > run the project 
-        >"set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass"
+        >"set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass" (once in vscode)
+        > npx expo install expo@latest
+        > npx expo install --fix
         > npm install
         > npx expo login (only once)
         > npx expo start
