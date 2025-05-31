@@ -1,3 +1,5 @@
+//simple get api from json server
+
 import React,{useEffect, useState} from "react"
 import {View, Text, StyleSheet, Alert} from "react-native"
 
@@ -6,7 +8,7 @@ function App ()
   const [data,setData]= useState([]);
   const getApiData = async ()=> {
       const url="http://192.168.101.8:3000/users";
-      let result= await fetch (url);
+      let result= await fetch (url); //bydefault fetch is get 
       result=  await result.json();
       setData(result);
       Alert.alert("Error", "Failed to fetch data: " + error.message);
