@@ -1,54 +1,81 @@
-import React, { useEffect, useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
-import Dashboard from "./src/components/Dashboard";
-import HelpAndSupport from "./src/components/HelpAndSupport";
-import SplashScreen from "./src/components/SplashScreen";
-import QRScanner from "./src/components/QRScanner";
+import React,{useEffect, useState} from "react"
+import {View, Text, StyleSheet, Alert} from "react-native"
 
-const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
+function App () 
+{ 
+  const [data,setData]= useState([]);
+  const getApiData = async ()=> {
+      const url="http://192.168.101.8:3000/users";
+      let result= await fetch (url);
+      result=  await result.json();
+      setData(result);
+      Alert.alert("Error", "Failed to fetch data: " + error.message);
+    
+  }
 
-function TabNavigator() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Inventory" component={Dashboard} />
-      <Tab.Screen name="Help & Support" component={HelpAndSupport} />
-    </Tab.Navigator>
-  );
-}
+  useEffect(()=>{
+    getApiData();
+  },[])
+  
+  
+  return(
+    <View style={styles.main}>
+      <Text style={{fontSize:40, backgroundColor:"blue", color:"#fff"}}>call api from the json server</Text>
+      {
+        data.length
+        ?
+          data.map((item,index)=>
+            <View style={styles.itemstyle}>
+              <Text style={{fontSize:30}}>{item.id}</Text>
+              <Text style={{fontSize:30}}>{item.email}</Text>
+              <Text style={{fontSize:30}}>{item.name}</Text>
+            </View>
+          )
+        :
+        null
+      }
+    </View>
+  )
+};
 
-export default function App() {
-  const [isLoading, setIsLoading] = useState(true);
+const styles= StyleSheet.create({
+    main:{
+      flex:1
+    },
+    itemstyle:{
+      fontSize:20,
+      marginBottom:10,
+      borderColor:"gray",
+      borderWidth:2,
+      shadowColor:"black",
+      elevation:5,
 
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 3000);
-    return () => clearTimeout(timer);
-  }, []);
 
-  if (isLoading) return <SplashScreen />;
+    }
+})
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen 
-          name="MainTabs" 
-          component={TabNavigator} 
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen 
-          name="ScanToPay" 
-          component={QRScanner}
-          options={{
-            title: 'Scan QR Code',
-            headerStyle: {
-              backgroundColor: 'cornflowerblue',
-            },
-            headerTintColor: '#fff',
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
+export default App;
+/*
+1. first we learn to fetch and make use of api found in internet like      jsonplaceholder.
+2. then make fake api/ domi api using json server because to test put,patch,delete we must use our own api we can't from the internet.
+3. install json server using command 
+        npm install -g json-server
+            make folder inside project as api/db.json and again run,
+        json server --watch db.json
+            this runs api locally in local port.  like http:localhost//3000  paste this in browser to use
+
+            Task	                Needs Browser?
+        Running JSON Server	            ❌ No
+        Making requests to it	          ❌ No
+        Viewing response in browser	    ✅ Optional
+        
+        learn to use postman
+
+4. now to make your api accessible to the devices running on the same network, use commands
+        ipconfig
+        json server --host 0.0.0.0 db.json
+            --host 0.0.0.0 makes api accessible to all the devices connected in same network
+        then goto browser and paste ip address and port like 192.168.108.1:3000
+
+
+*/
