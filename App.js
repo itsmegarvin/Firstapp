@@ -1,41 +1,35 @@
-//simple get api from json server
+//simple post api to json server
 
 import React,{useEffect, useState} from "react"
-import {View, Text, StyleSheet, Alert} from "react-native"
+import {Button,View, Text, StyleSheet} from "react-native"
 
 function App () 
 { 
-  const [data,setData]= useState([]);
-  const getApiData = async ()=> {
-      const url="http://192.168.101.8:3000/users";
-      let result= await fetch (url); //bydefault fetch is get 
-      result=  await result.json();
-      setData(result);
-      Alert.alert("Error", "Failed to fetch data: " + error.message);
-    
-  }
+  const data={
+      "name":"sam",
+      "email":"sam@test",
+      "id":5
+    }
+  
+
+  const postApi= async ()=>{
+    const url="http://192.168.101.8:3000/users";
+    const result=  await fetch(url,{
+      method:"POST",
+      headers:{"content-type":"application/json"},
+      body:JSON.stringify(data)
+    })
+    result= await result.json();
+  };
+
 
   useEffect(()=>{
-    getApiData();
+    postApi();
   },[])
-  
-  
   return(
     <View style={styles.main}>
-      <Text style={{fontSize:40, backgroundColor:"blue", color:"#fff"}}>call api from the json server</Text>
-      {
-        data.length
-        ?
-          data.map((item,index)=>
-            <View style={styles.itemstyle}>
-              <Text style={{fontSize:30}}>{item.id}</Text>
-              <Text style={{fontSize:30}}>{item.email}</Text>
-              <Text style={{fontSize:30}}>{item.name}</Text>
-            </View>
-          )
-        :
-        null
-      }
+      <Text style={{fontSize:40}}>simple post api in json server</Text>
+      <Button title="post" onPress={()=>(postApi)}></Button>
     </View>
   )
 };
@@ -43,16 +37,6 @@ function App ()
 const styles= StyleSheet.create({
     main:{
       flex:1
-    },
-    itemstyle:{
-      fontSize:20,
-      marginBottom:10,
-      borderColor:"gray",
-      borderWidth:2,
-      shadowColor:"black",
-      elevation:5,
-
-
     }
 })
 
