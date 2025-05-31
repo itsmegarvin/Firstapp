@@ -1,16 +1,23 @@
-
 {
-    "users": [
-        {
-            "name": "sagar",
-            "id": "1",
-            "email":"abc@test"
-        },
-        {
-            "name":"garvin",
-            "id": "2",
-            "email":"xyz@test"
-        }
-    ]
+  "users": [
+    {
+      "email": "put@test",
+      "id": "1"
+    },
+    {
+      "name": "bhaskar",
+      "email": "bas@test",
+      "id": "2"
+    },
+    {
+      "id": "0a2f",
+      "name": "pantha",
+      "email": "p@test"
+    },
+    {
+      "id": "6dda",
+      "name": "brot",
+      "email": "brot@test"
+    }
+  ]
 }
-

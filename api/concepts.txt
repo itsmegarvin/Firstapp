@@ -1,0 +1,13 @@
+1. first we learn to fetch and make use api found in internet like jsonplaceholder.
+2. then make fake api/ domi api using json server because to test put,patch,delete we must use our own api we can't from the internet.
+3. install json server using command 
+        npm install -g json-server
+            make folder inside project as api/db.json and again run,
+        json server --watch db.json
+            this runs api locally in local port.  like http:localhost//3000  paste this in browser to use
+        learn to use postman
+4. now to make your own api run in internet server use commands
+        ipconfig
+        json server --host 0.0.0.0 db.json
+        then goto browser and paste ip address and port like 192.168.108.1:3000
+
