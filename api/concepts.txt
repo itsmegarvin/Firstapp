@@ -5,6 +5,12 @@
             make folder inside project as api/db.json and again run,
         json server --watch db.json
             this runs api locally in local port.  like http:localhost//3000  paste this in browser to use
+
+            Task	                Needs Browser?
+        Running JSON Server	            ❌ No
+        Making requests to it	        ❌ No
+        Viewing response in browser	    ✅ Optional
+        
         learn to use postman
 4. now to make your own api run in internet server use commands
         ipconfig
