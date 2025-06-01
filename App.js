@@ -1,4 +1,4 @@
-// post api from the textinput and simple form.
+// simple form post api  error validation with textinput  .
 
 import React, { useEffect, useState } from "react";
 import { Button, View, Text, TextInput, StyleSheet, Alert } from "react-native";
@@ -8,7 +8,35 @@ function App() {
   const [age, setAge] = useState(0);
   const [email, setEmail] = useState("");
 
+  //error validation
+  const [nameError, setnameError]=useState(false);
+  const [emailError, setemailError]=useState(false);
+  const [ageError, setageError]=useState(false);
+
   const saveData = async () => {
+
+    if(!name){ // this checks always if the object is invalid,null,undefined
+      setnameError(true);
+    }else{
+      setnameError(false);
+    }
+
+    if(!age){
+      setageError(true);
+    }else{
+      setageError(false)
+    }
+
+    if(!email){
+      setemailError(true);
+    }else{
+      setemailError(false)
+    }
+    
+    if(!name || !age || !email){
+      return(false)
+    }
+    
     const url = "http://192.168.101.8:3000/users";
     const result = await fetch(url, {
         method: "POST",
@@ -29,18 +57,23 @@ function App() {
         onChangeText={(text) => setName(text)}
         placeholder="enter name"
       />
+      { nameError? <Text style={styles.errorStyle}>Please enter the valid name</Text> : null }
+
       <TextInput
         style={styles.inputStyle}
         value={age}
         onChangeText={(text) => setAge(text)}
         placeholder="enter age"
       />
+      { ageError? <Text style={styles.errorStyle}>Please enter the valid age</Text> : null }
+
       <TextInput
         style={styles.inputStyle}
         value={email}
         onChangeText={(text) => setEmail(text)}
         placeholder="enter email"
       />
+      { emailError? <Text style={styles.errorStyle}>Please enter the valid email</Text> : null }
 
       <Button title="submit" onPress={saveData} />
     </View>
@@ -55,6 +88,11 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
   },
+  errorStyle:{
+    fontSize:15,
+    marginLeft:10,
+    color:"red"
+  }
 });
 
 export default App;
