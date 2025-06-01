@@ -15,28 +15,15 @@ function App() {
 
   const saveData = async () => {
 
-    if(!name){ // this checks always if the object is invalid,null,undefined
-      setnameError(true);
-    }else{
-      setnameError(false);
-    }
+    setnameError(!name ? true : flase)// we can use if else instead
+    setageError(!age ? true : false)
+    setemailError(!email ? true : false)
 
-    if(!age){
-      setageError(true);
-    }else{
-      setageError(false)
-    }
-
-    if(!email){
-      setemailError(true);
-    }else{
-      setemailError(false)
-    }
     
     if(!name || !age || !email){
       return(false)
     }
-    
+
     const url = "http://192.168.101.8:3000/users";
     const result = await fetch(url, {
         method: "POST",
