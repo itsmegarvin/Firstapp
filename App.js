@@ -1,85 +1,75 @@
-// simple form post api  error validation with textinput  .
-
 import React, { useEffect, useState } from "react";
 import { Button, View, Text, TextInput, StyleSheet, Alert } from "react-native";
 
 function App() {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState(0);
-  const [email, setEmail] = useState("");
+  const [data, setData] = useState("");
 
-  //error validation
-  const [nameError, setnameError]=useState(false);
-  const [emailError, setemailError]=useState(false);
-  const [ageError, setageError]=useState(false);
-
-  const saveData = async () => {
-
-    setnameError(!name ? true : flase)// we can use if else instead
-    setageError(!age ? true : false)
-    setemailError(!email ? true : false)
-
-    
-    if(!name || !age || !email){
-      return(false)
-    }
-
-    const url = "http://192.168.101.8:3000/users";
-    const result = await fetch(url, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body :JSON.stringify({name, age, email})
-      });
+  const getApiData = async () => {
+    const url = "http://192.168.101.11:3000/users";
+    let result = await fetch(url);
     result = await result.json();
+    setData(result);
   };
 
+  useEffect(() => {
+    getApiData();
+  }, []);
+
   return (
-    <View>
-      <Text style={{ fontSize: 30 }}>
-        post api with input fields and form data
-      </Text>
-      <TextInput
-        style={styles.inputStyle}
-        value={name}
-        onChangeText={(text) => setName(text)}
-        placeholder="enter name"
-      />
-      { nameError? <Text style={styles.errorStyle}>Please enter the valid name</Text> : null }
+    <View style={styles.container}>
 
-      <TextInput
-        style={styles.inputStyle}
-        value={age}
-        onChangeText={(text) => setAge(text)}
-        placeholder="enter age"
-      />
-      { ageError? <Text style={styles.errorStyle}>Please enter the valid age</Text> : null }
+      <View style={styles.dataWrapper}>
+              <View>
+                <Text>NAME</Text>
+              </View>
+              <View>
+                <Text>ID</Text>
+              </View>
+              <View>
+                <Text>EMAIL</Text>
+              </View>
+              <View>
+                <Text>OPERATION</Text>
+              </View>
+            </View>
 
-      <TextInput
-        style={styles.inputStyle}
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-        placeholder="enter email"
-      />
-      { emailError? <Text style={styles.errorStyle}>Please enter the valid email</Text> : null }
-
-      <Button title="submit" onPress={saveData} />
+      {data.length
+        ? data.map((item, index) => (
+            <View style={styles.dataWrapper}>
+              <View style={{flex:1}}>
+                <Text>{item.name}</Text>
+              </View>
+              <View style={{flex:1}}>
+                <Text>{item.id}</Text>
+              </View>
+              <View style={{flex:1}}>
+                <Text>{item.email}</Text>
+              </View>
+              <View style={{flex:1}}>
+                <Button title="delete"></Button>
+              </View>
+              <View style={{flex:1}}>
+                <Button title="update"></Button>
+              </View>
+            </View>
+          ))
+        : null}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  inputStyle: {
-    fontSize: 20,
-    borderWidth: 3,
-    borderColor: "skyblue",
-    margin: 10,
-    padding: 10,
+  container: {
+    flex: 1,
   },
-  errorStyle:{
-    fontSize:15,
-    marginLeft:10,
-    color:"red"
-  }
+  dataWrapper: {
+    flexDirection:"row",
+    justifyContent:"space-around",
+    backgroundColor:"skyblue",
+    margin:10,
+    padding:10,
+    alignItems:"center"
+  },
 });
 
 export default App;
