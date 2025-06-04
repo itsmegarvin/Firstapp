@@ -2,43 +2,28 @@
   "users": [
     {
       "email": "put@test",
-      "id": 1,
+      "id": "1",
       "name": "garvin"
     },
     {
       "name": "bhaskar",
       "email": "bas@test",
-      "id": 2
+      "id": "2"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "pantha",
       "email": "p@test"
     },
     {
-      "id":4,
+      "id": "4",
       "name": "brot",
       "email": "brot@test"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "sam",
       "email": "sam@test"
-    },
-    {
-      "id": 6,
-      "name": "sami",
-      "email": "samyy@test"
-    },
-    {
-      "id": 7,
-      "name": "jake",
-      "email": "jake@test"
-    },
-    {
-      "id": 8,
-      "name": "bryan",
-      "email": "bryan@test"
     }
   ]
 }

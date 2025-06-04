@@ -5,16 +5,29 @@ function App() {
   const [data, setData] = useState("");
 
   const getApiData = async () => {
-    const url = "http://192.168.101.11:3000/users";
+    const url = "http://192.168.101.12:3000/users";
     let result = await fetch(url);
     result = await result.json();
     setData(result);
   };
 
+  const deleteData= async(id)=>{
+    const url="http://192.168.101.12:3000/users";
+    let result = await fetch(`${url}/${id}`,{
+      method:"delete"
+    });
+    result = await result.json();
+    if(result){
+      alert("user deleted");
+      getApiData();
+    }
+
+  }
+
   useEffect(() => {
     getApiData();
   }, []);
-
+  
   return (
     <View style={styles.container}>
 
@@ -26,27 +39,21 @@ function App() {
                 <Text>ID</Text>
               </View>
               <View>
-                <Text>EMAIL</Text>
-              </View>
-              <View>
                 <Text>OPERATION</Text>
               </View>
             </View>
 
       {data.length
         ? data.map((item, index) => (
-            <View style={styles.dataWrapper}>
+            <View  style={styles.dataWrapper}>
               <View style={{flex:1}}>
                 <Text>{item.name}</Text>
               </View>
               <View style={{flex:1}}>
                 <Text>{item.id}</Text>
               </View>
-              <View style={{flex:1}}>
-                <Text>{item.email}</Text>
-              </View>
-              <View style={{flex:1}}>
-                <Button title="delete"></Button>
+              <View style={{flex:1, marginRight:5}} >
+                <Button title="delete" onPress={()=>deleteData(item.id)}></Button>
               </View>
               <View style={{flex:1}}>
                 <Button title="update"></Button>
