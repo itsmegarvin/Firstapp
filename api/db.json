@@ -16,14 +16,8 @@
       "email": "p@test"
     },
     {
-      "id": "4",
-      "name": "brot",
-      "email": "brot@test"
-    },
-    {
-      "id": "5",
-      "name": "sam",
-      "email": "sam@test"
+      "name": "Jay",
+      "id": "4"
     }
   ]
 }

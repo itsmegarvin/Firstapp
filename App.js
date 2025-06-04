@@ -1,10 +1,18 @@
 import React, { use, useEffect, useState } from "react";
-import { Button, View, Text, TextInput, StyleSheet, Alert , Modal} from "react-native";
+import {
+  Button,
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  Alert,
+  Modal,
+} from "react-native";
 
 function App() {
   const [data, setData] = useState("");
-  const [showModal,setshowModal]=useState(false);
-  const [selectedUser,setselectedUser]=useState(undefined);
+  const [showModal, setshowModal] = useState(false);
+  const [selectedUser, setselectedUser] = useState(undefined);
 
   const getApiData = async () => {
     const url = "http://192.168.101.12:3000/users";
@@ -13,131 +21,153 @@ function App() {
     setData(result);
   };
 
-  const deleteData= async(id)=>{
-    const url="http://192.168.101.12:3000/users";
-    let result = await fetch(`${url}/${id}`,{
-      method:"delete"
+  const deleteData = async (id) => {
+    const url = "http://192.168.101.12:3000/users";
+    let result = await fetch(`${url}/${id}`, {
+      method: "delete",
     });
     result = await result.json();
-    if(result){
+    if (result) {
       alert("user deleted");
       getApiData();
     }
-  }
+  };
 
-  const updateData= (data)=>{
+  const updateData = (data) => {
     setshowModal(true);
     setselectedUser(data);
-  }
+  };
 
   useEffect(() => {
     getApiData();
   }, []);
-  
+
   return (
     <View style={styles.container}>
-
       <View style={styles.dataWrapper}>
-              <View>
-                <Text>NAME</Text>
-              </View>
-              <View>
-                <Text>ID</Text>
-              </View>
-              <View>
-                <Text>OPERATION</Text>
-              </View>
-            </View>
+        <View>
+          <Text>NAME</Text>
+        </View>
+        <View>
+          <Text>ID</Text>
+        </View>
+        <View>
+          <Text>OPERATION</Text>
+        </View>
+      </View>
 
       {data.length
         ? data.map((item, index) => (
-            <View  style={styles.dataWrapper}>
-              <View style={{flex:1}}>
+            <View style={styles.dataWrapper}>
+              <View style={{ flex: 1 }}>
                 <Text>{item.name}</Text>
               </View>
-              <View style={{flex:1}}>
+              <View style={{ flex: 1 }}>
                 <Text>{item.id}</Text>
               </View>
-              <View style={{flex:1, marginRight:5}} >
-                <Button title="delete" onPress={()=>deleteData(item.id)}></Button>
+              <View style={{ flex: 1, marginRight: 5 }}>
+                <Button
+                  title="delete"
+                  onPress={() => deleteData(item.id)}
+                ></Button>
               </View>
-              <View style={{flex:1}}>
-                <Button title="update" onPress={()=>updateData(item)}></Button>
+              <View style={{ flex: 1 }}>
+                <Button
+                  title="update"
+                  onPress={() => updateData(item)}
+                ></Button>
               </View>
             </View>
           ))
         : null}
 
-        <Modal visible={showModal} transparent={true}>
-          <Usermodal setshowModal={setshowModal} selectedUser={selectedUser}/>
-        </Modal>
-
-
+      <Modal visible={showModal} transparent={true}>
+        <Usermodal
+          setshowModal={setshowModal}
+          selectedUser={selectedUser}
+          getApiData={getApiData}
+        />
+      </Modal>
     </View>
   );
 }
 
+const Usermodal = (props) => {
+  const [name, setName] = useState(undefined);
+  const [id, setId] = useState(undefined);
 
-const Usermodal = (props)=>{
-
-  const [name, setName]= useState(undefined);
-  const [id, setId]= useState(undefined);
-
-  useEffect (()=>{
-    if(props.selectedUser){
+  useEffect(() => {
+    if (props.selectedUser) {
       setName(props.selectedUser.name);
       setId(props.selectedUser.id);
     }
-  },[props.selectedUser])
+  }, [props.selectedUser]);
 
-  return(
-          <View style={styles.centeredView} >
-            <View style={styles.modalView}>
-              <TextInput style={styles.input} value={name}/>
-              <TextInput style={styles.input} value={id}/>
-              <Button title="close" onPress={()=>props.setshowModal(false)}/>
-                <View style={{marginTop:5}}>
-                  <Button title="update" />
-                </View>
-            </View>
-          </View>
-  )
-}
+  const UpdateUser = async () => {
+    const url = "http://192.168.101.12:3000/users";
+    let result = await fetch(`${url}/${id}`, {
+      method: "put",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ name}),
+    });
+    result = await result.json();
+
+    if (result) {
+      props.getApiData();
+      props.setshowModal(false);
+    }
+  };
+
+  return (
+    <View style={styles.centeredView}>
+      <View style={styles.modalView}>
+        <TextInput
+          style={styles.input}
+          value={name}
+          onChangeText={(text) => setName(text)}
+        />
+        <Button title="close" onPress={() => props.setshowModal(false)} />
+        <View style={{ marginTop: 15 }}>
+          <Button title="Save" onPress={UpdateUser} />
+        </View>
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   dataWrapper: {
-    flexDirection:"row",
-    justifyContent:"space-around",
-    backgroundColor:"skyblue",
-    margin:10,
-    padding:10,
-    alignItems:"center"
+    flexDirection: "row",
+    justifyContent: "space-around",
+    backgroundColor: "skyblue",
+    margin: 10,
+    padding: 10,
+    alignItems: "center",
   },
-  centeredView:{
-    flex:1,
-    justifyContent:"center",
-    alignItems:"center",
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  modalView:{
-    backgroundColor:"#fff",
-    padding:50,
-    borderRadius:10,
-    borderColor:"black",
-    borderWidth:1,
-    
-
+  modalView: {
+    backgroundColor: "#fff",
+    padding: 50,
+    borderRadius: 10,
+    borderColor: "black",
+    borderWidth: 1,
   },
-  input:{
-    borderWidth:2,
-    borderColor:"skyblue",
-    height:40,
-    width:200,
-    marginBottom:5,
-
-  }
+  input: {
+    borderWidth: 2,
+    borderColor: "skyblue",
+    height: 40,
+    width: 200,
+    marginBottom: 5,
+  },
 });
 
 export default App;
