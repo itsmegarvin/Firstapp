@@ -79,11 +79,26 @@ function App() {
 
 
 const Usermodal = (props)=>{
+
+  const [name, setName]= useState(undefined);
+  const [id, setId]= useState(undefined);
+
+  useEffect (()=>{
+    if(props.selectedUser){
+      setName(props.selectedUser.name);
+      setId(props.selectedUser.id);
+    }
+  },[props.selectedUser])
+
   return(
           <View style={styles.centeredView} >
             <View style={styles.modalView}>
-              <Text>{props.selectedUser.name}</Text>
+              <TextInput style={styles.input} value={name}/>
+              <TextInput style={styles.input} value={id}/>
               <Button title="close" onPress={()=>props.setshowModal(false)}/>
+                <View style={{marginTop:5}}>
+                  <Button title="update" />
+                </View>
             </View>
           </View>
   )
@@ -111,8 +126,16 @@ const styles = StyleSheet.create({
     padding:50,
     borderRadius:10,
     borderColor:"black",
-    borderWidth:3,
+    borderWidth:1,
     
+
+  },
+  input:{
+    borderWidth:2,
+    borderColor:"skyblue",
+    height:40,
+    width:200,
+    marginBottom:5,
 
   }
 });
