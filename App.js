@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Button, View, Text, TextInput, StyleSheet, Alert } from "react-native";
+import React, { use, useEffect, useState } from "react";
+import { Button, View, Text, TextInput, StyleSheet, Alert , Modal} from "react-native";
 
 function App() {
   const [data, setData] = useState("");
+  const [showModal,setshowModal]=useState(false);
+  const [selectedUser,setselectedUser]=useState(undefined);
 
   const getApiData = async () => {
     const url = "http://192.168.101.12:3000/users";
@@ -21,7 +23,11 @@ function App() {
       alert("user deleted");
       getApiData();
     }
+  }
 
+  const updateData= (data)=>{
+    setshowModal(true);
+    setselectedUser(data);
   }
 
   useEffect(() => {
@@ -56,13 +62,31 @@ function App() {
                 <Button title="delete" onPress={()=>deleteData(item.id)}></Button>
               </View>
               <View style={{flex:1}}>
-                <Button title="update"></Button>
+                <Button title="update" onPress={()=>updateData(item)}></Button>
               </View>
             </View>
           ))
         : null}
+
+        <Modal visible={showModal} transparent={true}>
+          <Usermodal setshowModal={setshowModal} selectedUser={selectedUser}/>
+        </Modal>
+
+
     </View>
   );
+}
+
+
+const Usermodal = (props)=>{
+  return(
+          <View style={styles.centeredView} >
+            <View style={styles.modalView}>
+              <Text>{props.selectedUser.name}</Text>
+              <Button title="close" onPress={()=>props.setshowModal(false)}/>
+            </View>
+          </View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -77,6 +101,20 @@ const styles = StyleSheet.create({
     padding:10,
     alignItems:"center"
   },
+  centeredView:{
+    flex:1,
+    justifyContent:"center",
+    alignItems:"center",
+  },
+  modalView:{
+    backgroundColor:"#fff",
+    padding:50,
+    borderRadius:10,
+    borderColor:"black",
+    borderWidth:3,
+    
+
+  }
 });
 
 export default App;
