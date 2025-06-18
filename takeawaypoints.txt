@@ -108,3 +108,12 @@ d) and run the project
     >post api
     >delete api
     >put api
+20> to change the app icon two different ways for the two system
+    >android
+    >ios
+
+        :but for both the system process is 
+        >generate icon from online and download since you dont have the designers team
+        >secondly replace the icon on editor going through specific folder.like android folder for android and ios folder for ios.
+        >and build the app
+    
