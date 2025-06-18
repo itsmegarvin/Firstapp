@@ -100,3 +100,11 @@ d) and run the project
 16> show, hide and toggle the component
 17> responsive UI
 18> types of navigator(stack, drawer, tab)
+19> concept of API
+    >api call
+    >flatlist with api
+    >test api with postman
+    >fetch api
+    >post api
+    >delete api
+    >put api
