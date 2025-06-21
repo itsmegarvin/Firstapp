@@ -1,48 +1,57 @@
-
-
 import React, {  use, useState } from "react";
-import {View, Text, Button } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {View, Text, Button,StyleSheet,Image ,ScrollView} from "react-native";
+import Header from "./src/components/Header"
+import Product from "./src/components/Product"
 
 const App = ()=>{
 
-  const[name,setName]= useState("")
+  const products=[
+    {
+      name:"samsung",
+      price:30000,
+      color:"blue",
+      image:'https://www.iconpacks.net/icons/1/free-icon-mobile-phone-695.png'
+    },
+    {
+      name:"iphone ",
+      price:130000,
+      color:"black",
+      image:"https://www.iconpacks.net/icons/1/free-icon-mobile-phone-695.png"
+    },
+    {
+      name:"nokia",
+      price:20000,
+      color:"green",
+      image:"https://www.iconpacks.net/icons/1/free-icon-mobile-phone-695.png"
+    }
+  ]
 
-  const setData= async()=>{
-    await AsyncStorage.setItem("name","garvin poe")
-  }
-  const getData= async()=>{
-    const name= await AsyncStorage.getItem("name")
-    alert(name);
-    setName(name)
-  }
-  const removeData=async ()=>{
-    await AsyncStorage.removeItem("name")
-    setName("")
-  }
   return(
-    <View style={{flex:1,padding:15}}>
-      <Text style={{fontSize:30, color:"skyblue"}}>async storage in RN{name}</Text>
-      <View style={{marginBottom:5}}>
-      <Button title="set data" onPress={setData} />
-      </View>
-      <Button title="get data" onPress={getData}/>
-      <View style={{marginTop:5}}>
-      <Button title="remove data" onPress={removeData}/>
-      </View>
+    <View style={styles.container}>
+      <Text style={{fontSize:30, color:"black"}}>make add to cart UI for redux</Text>
+      <Text style={{fontSize:30, color:"skyblue", textAlign:"right"}}>0</Text>
+      <Header/>
+
+      <ScrollView>
+      {
+        products.map((item,index)=>
+          <Product item={item}/>
+        )
+      }
+      </ScrollView>
+      
     </View>
   )
 }
 
+const styles= StyleSheet.create({
+  container:{
+    flex:1,
+  }
+})
+
 export default App;
 
-/*
-  Asynchronous storage
-  >used for permanent storage.
-  >once you data wont lost even if app is refreshed,shutdown or minmized.
-  >even after you open app after many days it wont be lost.
-  >but if the app's cache is removed or the app is uninstalled or the app is logged out then data will get lost
-  >here i have make the use of state to understand properly as well. for eg if the app is refreshed or shut off then the component wont show the value of state or what is inside the state eg {name} but if getData is clicked then only the name is shown because the name was stored in asynchronous storage and state was not.
-*/
+
 
 
