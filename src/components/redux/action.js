@@ -6,3 +6,5 @@ import { ADD_TO_CART } from "./constants";
         data:item
     }
 }
+
+//actions coming to action.js should be dispatched

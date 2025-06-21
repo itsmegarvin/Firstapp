@@ -1,11 +1,13 @@
 import React, { use, useState } from "react";
 import { View, Text, Button, StyleSheet, Image, Alert } from "react-native";
-import { ADD_TO_CART } from "./redux/action";
+import { useDispatch } from "react-redux";
+import { ADD_TO_CART, addToCart } from "./redux/action";
 
 const App = (props) => {
   const item = props.item;
+  const dispatch = useDispatch();
   const handleAddToCart = (item) => {
-    alert("called")
+    dispatch(addToCart(item))
   };
   return (
     <View
