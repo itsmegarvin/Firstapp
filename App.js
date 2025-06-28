@@ -36,8 +36,7 @@ const App = ()=>{
 
   return(
     <View style={styles.container}>
-      <Text style={{fontSize:30, color:"black"}}>make add to cart UI for redux</Text>
-      <Text style={{fontSize:30, color:"skyblue", textAlign:"right"}}>0</Text>
+      
       <Header/>
 
       <ScrollView>
