@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React from "react";
 import { View, Text, Button, StyleSheet, Image, Alert } from "react-native";
 import { useDispatch } from "react-redux";
 import { ADD_TO_CART, addToCart } from "./redux/action";

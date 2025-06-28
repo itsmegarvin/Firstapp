@@ -1,7 +1,15 @@
-import React, {  use, useState } from "react";
+
+
+
+import React from "react";
 import {View, Text, Button,StyleSheet,Image ,ScrollView} from "react-native";
 import Header from "./src/components/Header"
 import Product from "./src/components/Product"
+import { AppRegistry } from "react-native";
+import {name as appName} from './app.json'
+import { Provider } from "react-redux";
+import store from "./src/components/redux/store";
+
 
 const App = ()=>{
 
@@ -50,7 +58,42 @@ const styles= StyleSheet.create({
   }
 })
 
-export default App;
+
+const reduxWrapper=()=>{
+    return(
+    <Provider store={store}>
+        <App/>
+    </Provider>
+    )
+}
+
+AppRegistry.registerComponent(appName, ()=> reduxWrapper);
+
+
+
+export default reduxWrapper;
+
+
+/*
+if i were using other than expo i could also make index.js as separate file and include as below:
+
+import { AppRegistry } from "react-native";
+import App from './App';
+import {name as appName} from './app.json'
+import { Provider } from "react-redux";
+import store from "./src/components/redux/store";
+
+const reduxWrapper=()=>{
+    return(
+    <Provider store={store}>
+        <App/>
+    </Provider>
+    )
+}
+
+AppRegistry.registerComponent(appName, ()=> reduxWrapper);
+
+*/
 
 
 
