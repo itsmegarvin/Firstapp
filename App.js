@@ -1,77 +1,46 @@
-
-
-
 import React from "react";
-import {View, Text, Button,StyleSheet,Image ,ScrollView} from "react-native";
-import Header from "./src/components/Header"
-import Product from "./src/components/Product"
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  Image,
+  ScrollView,
+} from "react-native";
 import { AppRegistry } from "react-native";
-import {name as appName} from './app.json'
+import { name as appName } from "./app.json";
 import { Provider } from "react-redux";
 import store from "./src/components/redux/store";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ProductWrapper from "./src/components/ProductWrapper";
+import UserList from "./src/components/UserList";
+
+const Stack = createNativeStackNavigator();
+const App = () => {
+  
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={ProductWrapper}/>
+        <Stack.Screen name="UserList" component={UserList}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
 
 
-const App = ()=>{
 
-  const products=[
-    {
-      name:"samsung",
-      price:30000,
-      color:"blue",
-      image:'https://www.iconpacks.net/icons/1/free-icon-mobile-phone-695.png'
-    },
-    {
-      name:"iphone ",
-      price:130000,
-      color:"black",
-      image:"https://www.iconpacks.net/icons/1/free-icon-mobile-phone-695.png"
-    },
-    {
-      name:"nokia",
-      price:20000,
-      color:"green",
-      image:"https://www.iconpacks.net/icons/1/free-icon-mobile-phone-695.png"
-    }
-  ]
-
-  return(
-    <View style={styles.container}>
-      
-      <Header/>
-
-      <ScrollView>
-      {
-        products.map((item,index)=>
-          <Product item={item}/>
-        )
-      }
-      </ScrollView>
-      
-    </View>
-  )
-}
-
-const styles= StyleSheet.create({
-  container:{
-    flex:1,
-  }
-})
-
-
-const reduxWrapper=()=>{
-    return(
+const reduxWrapper = () => {
+  return (
     <Provider store={store}>
-        <App/>
+      <App />
     </Provider>
-    )
-}
-
-AppRegistry.registerComponent(appName, ()=> reduxWrapper);
-
-
+  );
+};
+AppRegistry.registerComponent(appName, () => reduxWrapper);
 
 export default reduxWrapper;
-
 
 /*
 if i were using other than expo i could also make index.js as separate file and include as below:
@@ -93,7 +62,3 @@ const reduxWrapper=()=>{
 AppRegistry.registerComponent(appName, ()=> reduxWrapper);
 
 */
-
-
-
-

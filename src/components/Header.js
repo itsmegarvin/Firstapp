@@ -10,7 +10,7 @@ const Header = ()=>{
     setCartItems(cartData.length)
   },[cartData])
   return(
-    <View>
+    <View style={{backgroundColor:"skyblue",borderRadius:50}}>
       <Text style={{fontSize:30,textAlign:"right",padding:20}}>{cartItems}</Text>
     </View>
   )
