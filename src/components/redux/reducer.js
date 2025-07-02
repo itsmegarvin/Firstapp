@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from "./constants";
+import { ADD_TO_CART, REMOVE_FROM_CART } from "./constants";
 
 const initialState=[];
 
@@ -9,6 +9,11 @@ export default reducer=(state=initialState,action)=>{//always should have two pa
                 ...state,
                 action.data
             ]
+        case REMOVE_FROM_CART:
+            let result= state.filter(item=>{
+                return item.name!=action.data
+            })
+            return[ ...result]
         default:
             return state;
     }
